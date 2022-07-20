@@ -41,6 +41,20 @@ def printrange(k1,k2,root):
         print(root.data)
         printrange(k1,k2,root.left)
         printrange(k1,k2,root.right)
+
+def constructbst(arr,s,e):
+    if s>e:
+        return None
+    mid=(s+e)//2
+    root=Node(arr[mid])
+    left=constructbst(arr,s,mid-1)
+    right=constructbst(arr,mid+1,e)
+    root.left=left
+    root.right=right
+    return root
+
+    
+    
     
 
 def printtree(root):
@@ -55,7 +69,12 @@ def printtree(root):
     print()
     printtree(root.left)
     printtree(root.right)
-root=inputtree()
-printrange(5,10,root)
+#root=inputtree()
+arr=[1,2,3,4,5,6,7]
+s=0
+e=len(arr)-1
+root=constructbst(arr,s,e)
+printtree(root)
+#printrange(5,10,root)
 
     
