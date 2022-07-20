@@ -30,6 +30,19 @@ def inputtree():
             q.put(rightchild)
     return root
 
+def printrange(k1,k2,root):
+    if root==None:
+        return None
+    if root.data>k2:
+        printrange(k1,k2,root.left)
+    elif root.data<k1:
+        printrange(k1,k2,root.right)
+    else:
+        print(root.data)
+        printrange(k1,k2,root.left)
+        printrange(k1,k2,root.right)
+    
+
 def printtree(root):
     if root==None:
         return None
@@ -43,6 +56,6 @@ def printtree(root):
     printtree(root.left)
     printtree(root.right)
 root=inputtree()
-printtree(root)
+printrange(5,10,root)
 
     
