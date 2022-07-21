@@ -109,6 +109,15 @@ def isBSTimproved(root):
         isBST=False
     return minimum,maximum,isBST
 
+def isBST2(root,minrange,maxrange):
+    if root==None:
+        return True
+    if root.data<minrange or root.data>maxrange:
+        return False
+    left=isBST2(root.left,minrange,root.data-1)
+    right=isBST2(root.right,root.data,maxrange)
+    return left and right
+
 
 root=inputtree()
 #arr=[1,2,3,4,5,6,7]
@@ -116,9 +125,10 @@ root=inputtree()
 #e=len(arr)-1
 #root=constructbst(arr,s,e)
 printtree(root)
+print(isBST2(root,-100000,1000000))
 #print(isBST(root))
-min1,max1,balance=isBSTimproved(root)
-print(balance)
+#min1,max1,balance=isBSTimproved(root)
+#print(balance)
 #printrange(5,10,root)
 
     
