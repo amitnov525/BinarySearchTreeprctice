@@ -69,12 +69,38 @@ def printtree(root):
     print()
     printtree(root.left)
     printtree(root.right)
-#root=inputtree()
-arr=[1,2,3,4,5,6,7]
-s=0
-e=len(arr)-1
-root=constructbst(arr,s,e)
+
+def minma(root):
+    if root==None:
+        return 10000
+    left=minma(root.left)
+    right=minma(root.right)
+    return min(left,right,root.data)
+def maxima(root):
+    if root==None:
+        return -10000
+    left=maxima(root.left)
+    right=maxima(root.right)
+    return max(left,right,root.data)
+def isBST(root):
+    if root==None:
+        return True
+    leftmax=maxima(root.left)
+    rightmin=minma(root.right)
+    if root.data<leftmax or root.data>rightmin:
+        return False
+    leftbalance=isBST(root.left)
+    rightbalance=isBST(root.right)
+    return leftbalance and rightbalance
+
+
+root=inputtree()
+#arr=[1,2,3,4,5,6,7]
+#s=0
+#e=len(arr)-1
+#root=constructbst(arr,s,e)
 printtree(root)
+print(isBST(root))
 #printrange(5,10,root)
 
     
