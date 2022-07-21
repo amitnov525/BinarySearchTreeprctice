@@ -93,6 +93,22 @@ def isBST(root):
     rightbalance=isBST(root.right)
     return leftbalance and rightbalance
 
+#Improved method of BST
+
+def isBSTimproved(root):
+    if root ==None:
+        return 10000,-10000,True
+    leftmin,leftmax,leftbalance=isBSTimproved(root.left)
+    rightmin,rightmax,rightbalance=isBSTimproved(root.right)
+    maximum=max(leftmax,rightmax,root.data)
+    minimum=min(leftmin,rightmin,root.data)
+    isBST=True
+    if root.data<leftmax or root.data>rightmin:
+        isBST=False
+    if not(leftbalance) or not(rightbalance):
+        isBST=False
+    return minimum,maximum,isBST
+
 
 root=inputtree()
 #arr=[1,2,3,4,5,6,7]
@@ -100,7 +116,9 @@ root=inputtree()
 #e=len(arr)-1
 #root=constructbst(arr,s,e)
 printtree(root)
-print(isBST(root))
+#print(isBST(root))
+min1,max1,balance=isBSTimproved(root)
+print(balance)
 #printrange(5,10,root)
 
     
